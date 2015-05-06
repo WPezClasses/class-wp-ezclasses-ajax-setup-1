@@ -2,38 +2,59 @@
 
 var ezAS1 = ezAjaxSetup1;
 
-beforeAjax = function(thisThis, thisData, objName){
-    console.log('TODO - beforeAjax ' + $(thisThis).data(ezAS1.data_wp_localize_name));
+//
+ezAjaxBefore = function(thisThis, thisData, objName){
+    console.log('TODO - ezAjaxBefore');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
     return true;
 }
 
-alwaysAjax = function(thisThis, thisData, objName){
-    console.log('TODO - alwaysAjax ' + $(thisThis).data(ezAS1.data_wp_localize_name));
+ezAjaxBeforeFalse = function(thisThis, thisData, objName){
+    console.log('TODO - ezAjaxBeforeFalse');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
     return true;
 }
 
-doneAjaxTrue = function(thisThis, thisData, objName, thisResp){
-    console.log('TODO - doneAjaxTrue ' + $(thisThis).data(ezAS1.data_wp_localize_name));
+ezAjaxAlways = function(thisThis, thisData, objName){
+    console.log('TODO - ezAjaxAlways');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
+    return true;
+}
+
+ezAjaxDoneTrue = function(thisThis, thisData, objName, thisResp){
+    console.log('TODO - ezAjaxDoneTrue');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
     return 'TODO';
 }
 
-doneAjaxFalse = function(thisThis, thisData, objName, thisResp){
-    console.log('TODO - doneAjaxFalse ' + $(thisThis).data(ezAS1.data_wp_localize_name));
+ezAjaxDoneFalse = function(thisThis, thisData, objName, thisResp){
+    console.log('TODO - ezAjaxDoneFalse');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
     return 'TODO';
 }
 
-failAjax = function(thisThis, thisData, objName){
-    console.log('TODO - failAjax ' + $(thisThis).data(ezAS1.data_wp_localize_name));
+ezAjaxFail = function(thisThis, thisData, objName){
+    console.log('TODO - failAjax ');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
     return 'TODO';
 }
 
-searchEmptyAjax = function(thisThis, thisData, objName){
-    console.log('TODO - searchEmptyAjax ' + $(thisThis).data(ezAS1.data_wp_localize_name));
+ezAjaxSearchEmpty = function(thisThis, thisData, objName){
+
+    console.log('TODO - ezAjaxSearchEmpty');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
     return 'TODO';
 }
 
 
-demo_callback = function(aThis, thisData, objWPL, thisResp){
-    console.log('demo_callback > cb_data - ' + thisResp.cb_data);
+ezCallbackDemo1 = function(aThis, thisData, objWPL, thisResp){
+    console.log('TODO - ezCallbackDemo1 ');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
+    return 'true';
+}
+
+ezCallbackDemo2 = function(aThis, thisData, objWPL, thisResp){
+    console.log('TODO - ezCallbackDemo2 ');
+    console.log( $(thisThis).data(ezAS1.wp_localize_name) );
     return 'true';
 }

@@ -9,7 +9,6 @@
             if (typeof wpLocalizeName != 'undefined') {
                 return window[wpLocalizeName];
             }
-            console.log(ezAS1.data_wp_localize_name_error);
             return false;
         };
 
@@ -55,12 +54,11 @@
                 clearTimeout(ezTimeOut);
                 if ( $(this).val() == '' ){
 
-                    console.log('empty');
                     // typically to hide the spinner
                     ezSearchEmptyAjax = wpLocal.ajax_search_empty;
                     if ( window[ezSearchEmptyAjax] != undefined ){
                         // the input might be empty but perhaps there are hidden(s)?
-                        dataForm = thisForm.serialize();
+                        var dataForm = thisForm.serialize();
                         window[ezSearchEmptyAjax](thisForm, dataForm, wpLocal);
                     }
                     clearTimeout(ezTimeOut);
@@ -76,12 +74,13 @@
 
         //now that the page "event" has taken place and been preprocessed, do the ajax
         ezDoAjax = function(aThis, thisData, objWPL) {
-            ezBeforeAjax = objWPL.ajax_before;
-            var boolBeforeAjax = objWPL.ajax_before_bool_default;
-            if ( window[ezBeforeAjax] != undefined ){
-                boolBeforeAjax = window[ezBeforeAjax](aThis, thisData, objWPL);
+            var ezAjaxBefore = objWPL.ajax_before;
+            var boolAjaxBefore = objWPL.ajax_before_bool_default;
+            if ( ezAjaxBefore != false && window[ezAjaxBefore] != undefined ){
+                boolAjaxBefore = window[ezAjaxBefore](aThis, thisData, objWPL);
             }
-            if (boolBeforeAjax){
+
+            if (boolAjaxBefore){
                 var data = {
                     action: objWPL.action,
                     nonce:  objWPL.nonce,
@@ -96,13 +95,14 @@
 
                 }).always(function(){
 
-                    ezAlwaysAjax = objWPL.ajax_always;
-                    if ( ezAlwaysAjax != false && window[ezAlwaysAjax] != undefined ){
-                        window[ezAlwaysAjax](aThis, thisData, objWPL);
+                    var ezAjaxAlways = objWPL.ajax_always;
+                    if ( ezAjaxAlways != false && window[ezAjaxAlways] != undefined ){
+                        window[ezAjaxAlways](aThis, thisData, objWPL);
                     }
 
                 }).done( function(thisResp){
-                    flagCB = objWPL.ajax_done_bool_default;
+
+                    var flagCB = objWPL.ajax_done_bool_default;
                     if ( thisResp.status ) {
                         thisCB = thisResp.cb;
                         if ( thisCB != false && window[thisCB] != undefined ){
@@ -110,23 +110,27 @@
                         }
                     }
                     // to avoid either of these have the thisCB return a string. that is something other than bool (true / false)
-                    ezDoneAjaxTrue = objWPL.ajax_done_true;
-                    if ( flagCB == true && ezDoneAjaxTrue != false && window[ezDoneAjaxTrue] != undefined ){
-                        window[ezDoneAjaxTrue](aThis, thisData, objWPL, thisResp);
+                    var ezAjaxDoneTrue = objWPL.ajax_done_true;
+                    if ( flagCB == true && ezAjaxDoneTrue != false && window[ezAjaxDoneTrue] != undefined ){
+                        window[ezAjaxDoneTrue](aThis, thisData, objWPL, thisResp);
                     }
-                    ezDoneAjaxFalse = objWPL.ajax_done_false;
-                    if ( flagCB == false && ezDoneAjaxFalse != false && window[ezDoneAjaxFalse] != undefined ){
-                        window[ezDoneAjaxFalse](aThis, thisData, objWPL, thisResp);
+                    var ezAjaxDoneFalse = objWPL.ajax_done_false;
+                    if ( flagCB == false && ezAjaxDoneFalse != false && window[ezAjaxDoneFalse] != undefined ){
+                        window[ezAjaxDoneFalse](aThis, thisData, objWPL, thisResp);
                     }
 
                 }).fail( function(){
-                    ezFailAjax = objWPL.ajax_done;
-                    if ( ezFailAjax != false && window[ezFailAjax] != undefined ){
-                        window[ezFailAjax](aThis, thisData, objWPL);
+                    var ezAjaxFail = objWPL.ajax_done;
+                    if ( ezAjaxFail != false && window[ezAjaxFail] != undefined ){
+                        window[ezAjaxFail](aThis, thisData, objWPL);
                      }
                 });
             } else{
-                alert('do ajax = false TODO remove');
+                // before Ajax was false so we skip the request but still allow for this
+                var ezAjaxBeforeFalse = objWPL.ajax_before_false;
+                if ( ezAjaxBeforeFalse != false && window[ezAjaxBeforeFalse] != undefined ){
+                    window[ezAjaxBeforeFalse](aThis, thisData, objWPL);
+                }
             }
         }; // close ajax
 	});

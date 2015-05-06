@@ -94,7 +94,7 @@ if ( ! class_exists('Class_WP_ezClasses_Ajax_Setup_1') ) {
                 'admin_enqueue_scripts_active'      => true,
                 'admin_enqueue_scripts_priority'    => 10,
 
-                'ajax_js_handle'            => 'ez-ajax-setup-1',           // when enqueue'ing what handle do you want to assign to the ajax-setup-1.js
+                'ajax_js_handle'            => 'ez-ajax-setup-1',           // when enqueue'ing what handle do you want to assign to the ez-ajax-setup-1.js
                 'ajax_js_min'               => false,   // .min = TODO
 
                 'my_js_active'              => true,
@@ -299,7 +299,7 @@ if ( ! class_exists('Class_WP_ezClasses_Ajax_Setup_1') ) {
                     'conditional_tags'  => array(),
                     'type'              => 'script',
                     'handle'            => $arr_init['ajax_js_handle'],
-                    'src'               => $this->_url . 'js/ajax-setup-1'. $str_min . '.js',
+                    'src'               => $this->_url . 'js/ez-ajax-setup-1'. $str_min . '.js',
                     'deps'              => $arr_deps,
                     'ver'               => '0.5.0',
                     //	'media'				=> NULL'
