@@ -67,6 +67,11 @@ if ( ! class_exists('Class_WP_ezClasses_Ajax_Setup_1') ) {
 
         /**
          * Note: Any of the init_defaults can be TODOs. The TODOs here are the most typical / minimum.
+         *
+         * Note: Your Request 1(s) will need to have the same values for 'ajax_js_handle' and 'my_js_handle'.
+         *
+         * And 'my_js_src' is here since you'll want to have to have your own "my js" file. The js/my-ez-ajax.js
+         * in this repo is to show you a simple working example.
          */
         protected function ajax_todo()
         {
